@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.rw.domain.User;
 import com.rw.mapper.UserMapper;
 
+
 @Service
 public class UserService {
 
@@ -18,5 +19,11 @@ public class UserService {
 	
 	public void delete(int id) {
 		this.userMapper.deleteById(id);
+	}
+	
+	@Scheduled(cron = "0,20,40 * * * * ?")
+	@ScheduledLock
+	public void testLock(){
+    		logger.info(ServerTimer.getFull());
 	}
 }
